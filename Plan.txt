@@ -1,0 +1,9 @@
+Project Name: Iris_Classification based on random forest classifier
+
+1. learning plan
+
+    6.19
+        a) Learn decision tree and randon forest classifier related knowledge
+        b) load the data set and try to arrange it and draw the related data graph
+
+
