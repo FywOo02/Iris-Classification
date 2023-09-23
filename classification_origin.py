@@ -6,7 +6,47 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from ydata_profiling import ProfileReport
 from sklearn.tree import DecisionTreeClassifier
-from sklearn import metrics
+
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn import svm
+from sklearn.metrics import accuracy_score, classification_report
+
+# 步骤1: 数据准备
+# 加载鸢尾花数据集
+iris = datasets.load_iris()
+X = iris.data  # 特征数据
+y = iris.target  # 目标标签
+
+# 只选择山鸢尾（类别0）和变色鸢尾（类别1）的样本
+X = X[(y == 0) | (y == 1)]
+y = y[(y == 0) | (y == 1)]
+
+# 将数据集分为训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 步骤2: 模型训练
+# 创建SVM分类器
+clf = svm.SVC(kernel='linear', C=1)
+
+# 训练模型
+clf.fit(X_train, y_train)
+
+# 步骤3: 模型评估
+# 使用测试集进行预测
+y_pred = clf.predict(X_test)
+
+# 计算准确度
+accuracy = accuracy_score(y_test, y_pred)
+print("准确度：", accuracy)
+
+# 打印分类报告，包括精确度、召回率和F1值等
+print(classification_report(y_test, y_pred))
+
+
+
+
 
 # import the iris data set
 iris = pd.read_csv('IRIS.csv')
@@ -77,6 +117,7 @@ print('y_s train shape: {}'.format(y_test_s.shape))
 """
 
 # train and predict
+
 
 """based on Decision Tree Classifier"""
 print('*****Based on Decision Tree Classifier*****')
